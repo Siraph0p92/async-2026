@@ -5,7 +5,7 @@ def calculate_ticket_price(age):
     if age < 12 :
         return 120
     elif  12  <= age <= 60:
-        return 200 
+        return 200
     else :
         return 150
     
