@@ -13,14 +13,12 @@ def make_coffee(customer_name):
     update_cup_number(customer_name)
 
 def main():
+    queue = ['A', 'B', 'C']
     print(f"{ctime()} | === Multi-processing Coffee Machine ===")
+    start_time = time()
 
-    customers = ["A", "B", "C"]
     processes = []
-
-    start = time()
-
-    for customer in customers:
+    for customer in queue:
         p = multiprocessing.Process(target=make_coffee, args=(customer,))
         processes.append(p)
         p.start()
@@ -28,8 +26,8 @@ def main():
     for p in processes:
         p.join()
 
-    total = time() - start
-    print(f"{ctime()} | Total time: {total:.2f} seconds")
+    duration = time() - start_time
+    print(f"{ctime()} | Total time: {duration:.2f} seconds")
 
 if __name__ == "__main__":
     main()

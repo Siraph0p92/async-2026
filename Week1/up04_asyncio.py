@@ -13,17 +13,19 @@ async def make_coffee(customer_name):
     await update_cup_number(customer_name)
 
 async def main():
-    print(f"{ctime()} | === Async Coffee Machine ===")
+    queue = ['A', 'B', 'C']
+    print(f"{ctime()} | === Asyncio Coffee Machine ===")
+    start_time = time()
 
-    customers = ["A", "B", "C"]
+    tasks = []
+    for customer in queue:
+        task = asyncio.create_task(make_coffee(customer))
+        tasks.append(task)
 
-    start = time()
-
-    tasks = [asyncio.create_task(make_coffee(customer)) for customer in customers]
     await asyncio.gather(*tasks)
 
-    total = time() - start
-    print(f"{ctime()} | Total time: {total:.2f} seconds")
+    duration = time() - start_time
+    print(f"{ctime()} | Total time: {duration:.2f} seconds")
 
 if __name__ == "__main__":
     asyncio.run(main())
