@@ -14,7 +14,7 @@ async def main():
     # 2. Create a task for chicken rice wrapped inside a wait_for timeout of 1.0s.
     chicken_task = asyncio.create_task(asyncio.wait_for(
         send_order_to_kitchen(MY_STUDENT_ID, "hainanese_chicken", "Chicken Rice Special"),
-        timeout=1.0
+        timeout=2.0
     ))
 
     # 3. Combine both tasks and resolve them concurrently using asyncio.gather.
